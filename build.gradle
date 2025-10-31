@@ -16,14 +16,17 @@ dependencies {
 	// Spring Boot core
 	implementation 'org.springframework.boot:spring-boot-starter'
 
-	// JUnit 5 + Spring Boot test starter
+	// JUnit 5 + Spring Boot test starter (keeps unit testing)
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-	// Cucumber for JUnit 5
-	testImplementation 'io.cucumber:cucumber-java:8.11.0'
-	testImplementation 'io.cucumber:cucumber-junit-platform-engine:8.11.0'
+	// (Cucumber deps removed for now; will add later in git workflow)
 }
 
 test {
 	useJUnitPlatform()
+	testLogging {
+		// show these event types in console
+		events "passed", "skipped", "failed"
+		exceptionFormat "full"     // show full stacktraces for failures
+		showStandardStreams = false
+	}
 }
