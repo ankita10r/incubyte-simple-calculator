@@ -2,13 +2,19 @@ package com.example.incubyte_string_calculator;
 
 import org.springframework.stereotype.Component;
 
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
 
 @Component
 public class IncubyteStringCalculatorService {
 
     public int add(String input) {
+
+        List<Integer> negatives = new ArrayList<>();
+
         // TC01 - Empty String
         if (input == null || input.isEmpty()) return 0;
 
@@ -66,7 +72,14 @@ public class IncubyteStringCalculatorService {
             if (p.isEmpty()) {
                 throw new IllegalArgumentException("Invalid input: empty token");
             }
+            //TC12 Single Negative Number
+            if (Integer.parseInt(p) < 0) negatives.add(Integer.parseInt(p));
+
             sum += Integer.parseInt(p);
+        }
+        // TC13 Multiple Negatives
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException("negatives not allowed " + negatives.stream().map(String::valueOf).collect(Collectors.joining(",")));
         }
 
         return sum;

@@ -12,6 +12,7 @@ class IncubyteStringCalculatorApplicationTests {
 	@Test
 	void contextLoads() {
 	}
+
 	private IncubyteStringCalculatorService calc;
 
 	@BeforeEach
@@ -88,4 +89,21 @@ class IncubyteStringCalculatorApplicationTests {
 		assertEquals(6, calc.add("//[**][%%]\n1**2%%3"));
 
 	}
+
+	//TC12 Single Negative Number
+	@Test
+	void tc12_singleNegative_throws() {
+		IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> calc.add("1,-2"));
+		assertTrue(ex.getMessage().contains("-2"));
+	}
+
+
+	//TC13 Multiple Negatives
+	@Test
+	void tc13_multipleNegatives_reportAll() {
+		IllegalArgumentException ex = assertThrows(IllegalArgumentException.class, () -> calc.add("1,-2,-4,3"));
+		assertTrue(ex.getMessage().contains("-2,-4"));
+	}
+
+
 }
