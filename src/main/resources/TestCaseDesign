@@ -23,7 +23,7 @@ Input: "1\n2,3"
 Expected: 6
 Purpose: Handle newline as valid separator with commas
 
-6. Invalid Format
+6. Invalid Format (A - Detect invalid delimiter usage before processing, B- Check for any consecutive delimiters)
 Input: "1,\n"
 Expected: Error
 Purpose: Detect and reject invalid input patterns

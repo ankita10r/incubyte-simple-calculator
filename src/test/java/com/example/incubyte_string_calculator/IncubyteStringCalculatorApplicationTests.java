@@ -49,4 +49,10 @@ class IncubyteStringCalculatorApplicationTests {
 		assertEquals(6, calc.add("1\n2,3"));
 	}
 
+	//TC06 Invalid Format
+	@Test
+	void tc06_invalidTrailingDelimiter_throws() {
+		assertThrows(IllegalArgumentException.class, () -> calc.add("1,\n"));
+	}
+
 }
