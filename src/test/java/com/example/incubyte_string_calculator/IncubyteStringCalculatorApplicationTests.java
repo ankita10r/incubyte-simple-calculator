@@ -31,5 +31,10 @@ class IncubyteStringCalculatorApplicationTests {
 		assertEquals(1, calc.add("1"));
 	}
 
+	//TC03 Two Numbers
+	@Test
+	void tc03_twoNumbers_commaSeparated() {
+		assertEquals(3, calc.add("1,2"));
+	}
 
 }

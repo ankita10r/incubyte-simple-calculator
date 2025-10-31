@@ -13,6 +13,13 @@ public class IncubyteStringCalculatorService {
         if (!input.contains(",") && !input.contains("\n")) {
             return Integer.parseInt(input.trim());
         }
+        //TC03 Two Numbers
+        if (input.contains(",")) {
+            String[] parts = input.split(",");
+            int sum = 0;
+            for (String p : parts) sum += Integer.parseInt(p.trim());
+            return sum;
+        }
         return 0;
     }
 
