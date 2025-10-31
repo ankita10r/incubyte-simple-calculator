@@ -37,4 +37,10 @@ class IncubyteStringCalculatorApplicationTests {
 		assertEquals(3, calc.add("1,2"));
 	}
 
+	//TC04 Multiple Numbers
+	@Test
+	void tc04_multipleNumbers_returnSum() {
+		assertEquals(10, calc.add("1,2,3,4"));
+	}
+
 }

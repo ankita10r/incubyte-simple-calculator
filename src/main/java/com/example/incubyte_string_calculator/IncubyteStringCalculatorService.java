@@ -14,6 +14,7 @@ public class IncubyteStringCalculatorService {
             return Integer.parseInt(input.trim());
         }
         //TC03 Two Numbers
+        //TC04 Multiple Numbers
         if (input.contains(",")) {
             String[] parts = input.split(",");
             int sum = 0;
