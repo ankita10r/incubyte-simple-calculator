@@ -15,13 +15,18 @@ public class IncubyteStringCalculatorService {
         }
         //TC03 Two Numbers
         //TC04 Multiple Numbers
-        if (input.contains(",")) {
-            String[] parts = input.split(",");
-            int sum = 0;
-            for (String p : parts) sum += Integer.parseInt(p.trim());
-            return sum;
+        //TC05 Newline as Separator along with a comma
+        String[] parts = input.split("[,\n]+"); // Splits on comma and newline regex
+        int sum = 0;
+
+        for (String p : parts) {
+            p = p.trim();
+            if (!p.isEmpty()) {
+                sum += Integer.parseInt(p);
+            }
         }
-        return 0;
+
+        return sum;
     }
 
 
