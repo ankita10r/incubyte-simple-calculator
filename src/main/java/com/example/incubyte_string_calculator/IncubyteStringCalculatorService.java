@@ -2,43 +2,70 @@ package com.example.incubyte_string_calculator;
 
 import org.springframework.stereotype.Component;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Component
 public class IncubyteStringCalculatorService {
 
     public int add(String input) {
-
         // TC01 - Empty String
         if (input == null || input.isEmpty()) return 0;
 
-         //TC06 Invalid Format Checks
-            // TC06-A Invalid Format Checks (Detect invalid delimiter usage before processing)
-        if (input.startsWith(",") || input.startsWith("\n") ||
-                input.endsWith(",") || input.endsWith("\n")) {
-            throw new IllegalArgumentException("Invalid input: leading or trailing delimiter");
-            }
-            // TC06-B Invalid Format Checks (Check for any consecutive delimiters: ,\n  \n,  ,,  \n\n)
-            if (input.matches(".*(,\\n|\\n,|,,|\\n\\n).*")) {
-            throw new IllegalArgumentException("Invalid input: consecutive delimiters");
-            }
+        boolean customDelimiter = false;
+        String numbersPart = input;
+        String splitRegex = "[,\\n]";  // Default delimiters: comma and newline
 
+        // TC07–TC11: Custom Delimiter Parsing
+        if (input.startsWith("//")) {
+            customDelimiter = true;
+            int idx = input.indexOf('\n');
+            if (idx == -1)
+                throw new IllegalArgumentException("Invalid input: missing newline after delimiter header");
 
-        // TC02 - Single Number
-        if (!input.contains(",") && !input.contains("\n")) {
-            return Integer.parseInt(input.trim());
+            String header = input.substring(2, idx);
+            numbersPart = input.substring(idx + 1);
+
+            // TC09 Multi-Character / TC10 Multiple Delimiters / TC11 Multiple Long Delimiters
+            Matcher matcher = Pattern.compile("\\[(.*?)]").matcher(header);
+            StringBuilder regex = new StringBuilder();
+
+            if (matcher.find()) {
+                // TC09 Multi-Character Delimiter
+                regex.append(Pattern.quote(matcher.group(1)));
+
+                // TC10 Multiple Delimiters/ TC11 Multiple Long Delimiters
+                while (matcher.find()) {
+                    regex.append("|").append(Pattern.quote(matcher.group(1)));
+                }
+                splitRegex = regex.toString();
+            } else {
+                splitRegex = Pattern.quote(header); // TC07 Custom Delimiter / TC08 Custom Symbol Delimiter
+            }
         }
 
-        // TC03–TC05 - Multiple Numbers (comma + newline separators)
-        String[] parts = input.split("[,\n]");
+
+        // TC06 - Invalid Format Checks [Only for default delimiters (not custom ones)]
+        if (!customDelimiter) {
+            if (numbersPart.startsWith(",") || numbersPart.startsWith("\n") ||
+                    numbersPart.endsWith(",") || numbersPart.endsWith("\n")) {
+                throw new IllegalArgumentException("Invalid input: leading or trailing delimiter");
+            }
+
+            if (numbersPart.matches(".*(,\\n|\\n,|,,|\\n\\n).*")) {
+                throw new IllegalArgumentException("Invalid input: consecutive delimiters");
+            }
+        }
+
+        //Common to all TCs
+        String[] parts = numbersPart.split(splitRegex);
         int sum = 0;
 
         for (String p : parts) {
             p = p.trim();
-
-            // Extra defensive check — blank parts should not appear after valid input
             if (p.isEmpty()) {
                 throw new IllegalArgumentException("Invalid input: empty token");
             }
-
             sum += Integer.parseInt(p);
         }
 

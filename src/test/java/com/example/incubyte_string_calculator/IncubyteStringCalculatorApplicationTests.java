@@ -55,4 +55,37 @@ class IncubyteStringCalculatorApplicationTests {
 		assertThrows(IllegalArgumentException.class, () -> calc.add("1,\n"));
 	}
 
+
+	/// TC07 - Custom single-character delimiter
+	@Test
+	void tc07_customSingleDelimiter() {
+		assertEquals(3, calc.add("//;\n1;2"));
+	}
+
+	// TC08 - Custom symbol delimiter
+	@Test
+	void tc08_customSymbolDelimiter() {
+		assertEquals(5, calc.add("//#\n2#3"));
+
+	}
+
+	// TC09 - Multi-character delimiter
+	@Test
+	void tc09_multiCharacterDelimiter() {
+		assertEquals(6, calc.add("//[***]\n1***2***3"));
+	}
+
+	// TC10 - Multiple delimiters
+	@Test
+	void tc10_multipleDelimiters() {
+		assertEquals(6, calc.add("//[*][%]\n1*2%3"));
+
+	}
+
+	// TC11 - Multiple long delimiters
+	@Test
+	void tc11_multipleLongDelimiters() {
+		assertEquals(6, calc.add("//[**][%%]\n1**2%%3"));
+
+	}
 }
