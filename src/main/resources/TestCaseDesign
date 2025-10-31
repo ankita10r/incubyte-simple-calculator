@@ -1,0 +1,89 @@
+1. Empty Input
+Input: ""
+Expected: 0
+Purpose: Verify empty string returns 0
+
+2. Single Number
+Input: "1"
+Expected: 1
+Purpose: Ensure single number input is handled correctly
+
+3. Two Numbers
+Input: "1,2"
+Expected: 3
+Purpose: Verify comma-separated two numbers are summed correctly
+
+4. Multiple Numbers
+Input: "1,2,3,4"
+Expected: 10
+Purpose: Support for an unknown number of numbers
+
+5. Newline as Separator
+Input: "1\n2,3"
+Expected: 6
+Purpose: Handle newline as valid separator with commas
+
+6. Invalid Format
+Input: "1,\n"
+Expected: Error
+Purpose: Detect and reject invalid input patterns
+
+7. Custom Delimiter
+Input: "//;\n1;2"
+Expected: 3
+Purpose: Allow custom single-character delimiters
+
+8. Custom Symbol Delimiter
+Input: "//#\n2#3"
+Expected: 5
+Purpose: Handle symbol delimiters (e.g., #, *)
+
+9. Multi-Character Delimiter
+Input: "//[***]\n1***2***3"
+Expected: 6
+Purpose: Support longer custom delimiters
+
+10. Multiple Delimiters
+Input: "//[*][%]\n1*2%3"
+Expected: 6
+Purpose: Allow multiple different delimiters
+
+11. Multiple Long Delimiters
+Input: "//[**][%%]\n1**2%%3"
+Expected: 6
+Purpose: Handle multiple long delimiters
+
+12. Single Negative Number
+Input: "1,-2"
+Expected: Exception: "negatives not allowed -2"
+Purpose: Ensure negative numbers throw error
+
+13. Multiple Negatives
+Input: "1,-2,-4,3"
+Expected: Exception: "negatives not allowed -2,-4"
+Purpose: Report all negatives in exception message
+
+14. Ignore Numbers > 1000
+Input: "2,1001"
+Expected: 2
+Purpose: Ignore numbers greater than 1000
+
+15. Include 1000
+Input: "1000,2"
+Expected: 1002
+Purpose: Confirm 1000 is still valid
+
+16. Whitespace Handling
+Input: " 1 , 2 "
+Expected: 3
+Purpose: Ensure trimming of spaces
+
+17. Null Input
+Input: null
+Expected: 0
+Purpose: Handle null input safely
+
+18. Large Input List
+Input: "1,1,1,...(1000 times)"
+Expected: 1000
+Purpose: Test performance on large input

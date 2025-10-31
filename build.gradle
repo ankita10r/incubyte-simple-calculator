@@ -1,29 +1,29 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.5.7'
-	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.springframework.boot' version '3.3.2' // or your version
+	id 'io.spring.dependency-management' version '1.1.5'
 }
 
 group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-description = 'Project for String Calculator'
-
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
-}
+version = '1.0.0'
+sourceCompatibility = '17'
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
+	// Spring Boot core
 	implementation 'org.springframework.boot:spring-boot-starter'
+
+	// JUnit 5 + Spring Boot test starter
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+	// Cucumber for JUnit 5
+	testImplementation 'io.cucumber:cucumber-java:8.11.0'
+	testImplementation 'io.cucumber:cucumber-junit-platform-engine:8.11.0'
 }
 
-tasks.named('test') {
+test {
 	useJUnitPlatform()
 }
