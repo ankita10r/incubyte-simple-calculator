@@ -25,5 +25,11 @@ class IncubyteStringCalculatorApplicationTests {
 		assertEquals(0, calc.add(""));
 	}
 
+	//TC02 Single Number
+	@Test
+	void tc02_singleNumber_returnsNumber() {
+		assertEquals(1, calc.add("1"));
+	}
+
 
 }

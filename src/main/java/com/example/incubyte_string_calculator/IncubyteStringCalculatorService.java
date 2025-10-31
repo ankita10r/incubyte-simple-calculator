@@ -5,11 +5,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class IncubyteStringCalculatorService {
 
-    //TC01 Empty String
+
     public int add(String input) {
+        //TC01 Empty String
         if (input == null || input.isEmpty()) return 0;
-        // further cases not implemented yet
+        //TC02 Single Number
+        if (!input.contains(",") && !input.contains("\n")) {
+            return Integer.parseInt(input.trim());
+        }
         return 0;
     }
+
+
+
 
 }
