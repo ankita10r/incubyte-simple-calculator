@@ -75,7 +75,10 @@ public class IncubyteStringCalculatorService {
             //TC12 Single Negative Number
             if (Integer.parseInt(p) < 0) negatives.add(Integer.parseInt(p));
 
-            sum += Integer.parseInt(p);
+            //TC14 Ignore Numbers > 1000
+            if( Integer.parseInt(p ) < 1000) {
+                sum += Integer.parseInt(p);
+            }
         }
         // TC13 Multiple Negatives
         if (!negatives.isEmpty()) {

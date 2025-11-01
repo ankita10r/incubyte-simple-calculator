@@ -105,5 +105,10 @@ class IncubyteStringCalculatorApplicationTests {
 		assertTrue(ex.getMessage().contains("-2,-4"));
 	}
 
+	//TC14 Ignore Numbers > 1000
+	@Test
+	void tc14_ignoreNumbersGreaterThan1000() {
+		assertEquals(2, calc.add("2,1001"));
+	}
 
 }
