@@ -128,4 +128,15 @@ class IncubyteStringCalculatorApplicationTests {
 	void tc17_nullInput_returnsZero() {
 		assertEquals(0, calc.add(null));
 	}
+
+	// TC18 - Large input list (1000 times "1" => sum 1000)
+	@Test
+	void tc18_largeInputList() {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < 1000; i++) {
+			if (i > 0) sb.append(",");
+			sb.append("1");
+		}
+		assertEquals(1000, calc.add(sb.toString()));
+	}
 }

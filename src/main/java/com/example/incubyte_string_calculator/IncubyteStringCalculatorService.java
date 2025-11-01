@@ -68,6 +68,7 @@ public class IncubyteStringCalculatorService {
         String[] parts = numbersPart.split(splitRegex);
         int sum = 0;
 
+        //TC18 Large input list
         for (String p : parts) {
             //TC16 - Whitespace Handling (Trim extra spaces before parsing to number)
             p = p.trim();
