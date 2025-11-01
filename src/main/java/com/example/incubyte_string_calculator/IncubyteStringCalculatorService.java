@@ -15,7 +15,8 @@ public class IncubyteStringCalculatorService {
 
         List<Integer> negatives = new ArrayList<>();
 
-        // TC01 - Empty String
+        // TC01 - Empty String (Handles "")
+        // TC17 - Null Input (Handles null safely (return 0 instead of throwing an exception))
         if (input == null || input.isEmpty()) return 0;
 
         boolean customDelimiter = false;
@@ -68,6 +69,7 @@ public class IncubyteStringCalculatorService {
         int sum = 0;
 
         for (String p : parts) {
+            //TC16 - Whitespace Handling (Trim extra spaces before parsing to number)
             p = p.trim();
             if (p.isEmpty()) {
                 throw new IllegalArgumentException("Invalid input: empty token");

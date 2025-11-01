@@ -117,4 +117,15 @@ class IncubyteStringCalculatorApplicationTests {
 		assertEquals(1002, calc.add("1000,2"));
 	}
 
+	// TC16 Whitespace Handling
+	@Test
+	void tc16_whitespaceHandling() {
+		assertEquals(3, calc.add(" 1 , 2 "));
+	}
+
+	// TC17 Null Input
+	@Test
+	void tc17_nullInput_returnsZero() {
+		assertEquals(0, calc.add(null));
+	}
 }
