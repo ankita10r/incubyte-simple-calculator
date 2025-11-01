@@ -111,4 +111,10 @@ class IncubyteStringCalculatorApplicationTests {
 		assertEquals(2, calc.add("2,1001"));
 	}
 
+	//TC15 Include 1000
+	@Test
+	void tc15_includeThousand() {
+		assertEquals(1002, calc.add("1000,2"));
+	}
+
 }
